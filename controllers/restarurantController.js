@@ -1,5 +1,5 @@
-const { aggregate } = require("../models/category");
-const Restaurant = require("../models/restaurant");
+const { aggregate } = require("../models/Category");
+const Restaurant = require("../models/Restaurants");
 
 module.exports = {
     addRestaurant: async (req, res) => {
