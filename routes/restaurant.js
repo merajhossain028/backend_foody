@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const restaurantController = require('../controllers/restarurantController');
+const { verifyTokenAndAuthorization} = require('../middleware/verifyToken');
 
-router.post('/', restaurantController.addRestaurant);
+router.post('/', verifyTokenAndAuthorization, restaurantController.addRestaurant);
 
 router.get('/:code', restaurantController.getRandomRestaurants);
 

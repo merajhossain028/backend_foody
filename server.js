@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGOURL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', AuthRoute);
-app.use('/users', UserRoute);
+app.use('/api/users', UserRoute);
 app.use('/api/categories', CategoryRoute);
 app.use('/api/restaurant', RestaurantRoute);
 app.use('/api/foods', FoodRoute);

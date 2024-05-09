@@ -78,11 +78,11 @@ module.exports = {
                 id: user._id,
                 userType: user.userType,
                 email: user.email,
-             }, process.env.TOKEN_SECRET, {expiresIn: "21d"});
+             }, process.env.JWT_SECRET, {expiresIn: "21d"});
 
-             const { password, otp, ...others } = user.doc;
+             const { password, otp, ...others } = user._doc;
 
-             res.status(200).json({ status: true, message: "Login successful", ...others, token: userToken });
+             res.status(200).json({ ...others, userToken });
 
         } catch (error) {
             res.status(500).json({ status: false, message: error.message });
