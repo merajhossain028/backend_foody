@@ -6,7 +6,6 @@ const CategoryRoute = require('./routes/category');
 const RestaurantRoute = require('./routes/restaurant');
 const FoodRoute = require('./routes/food');
 const RatingRoute = require('./routes/rating');
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGOURL)
