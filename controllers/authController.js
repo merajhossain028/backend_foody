@@ -6,7 +6,7 @@ const sendEmail = require('../utils/smtp_function');
 
 module.exports = {
     createUser: async (req, res) => {
-        const emailRegex = /^(a-zA-20-9._-)+@[a-zA-20-9.-)+\. [a-zA-2] {2,4}$/;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
         if (!emailRegex.test(req.body.email)) {
             return res.status(400).json({ status: false, message: 'Email is not valid' });
@@ -48,7 +48,7 @@ module.exports = {
         }
     },
     loginUser: async (req, res) => {
-        const emailRegex = /^(a-zA-20-9._-)+@[a-zA-20-9.-)+\. [a-zA-2] {2,4}$/;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
         if (!emailRegex.test(req.body.email)) {
             return res.status(400).json({ status: false, message: 'Email is not valid' });
@@ -82,7 +82,7 @@ module.exports = {
 
              const { password, otp, ...others } = user.doc;
 
-             res.status(200).json({ status: true, message: "Login successful", data: others, token: userToken });
+             res.status(200).json({ status: true, message: "Login successful", ...others, token: userToken });
 
         } catch (error) {
             res.status(500).json({ status: false, message: error.message });
