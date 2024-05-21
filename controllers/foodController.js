@@ -91,7 +91,7 @@ module.exports = {
                 return res.status(200).json([]);
             }
 
-            res.status(200).json({ status: true, foods });
+            res.status(200).json(foods);
         } catch (error) {
             res.status(500).json({ status: false, message: error.message });
         }
