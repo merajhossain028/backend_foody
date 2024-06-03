@@ -1,3 +1,4 @@
+const { get } = require('mongoose');
 const Food = require('../models/Food');
 
 module.exports = {
@@ -50,15 +51,27 @@ module.exports = {
                 randomFoodList = await Food.aggregate([{ $sample: { size: 5 } }, { $project: { __v: 0 } }]);
             }
 
-            if(randomFoodList.length){
+            if (randomFoodList.length) {
                 res.status(200).json(randomFoodList);
 
-            } else{
+            } else {
                 res.status(404).json({ status: false, message: 'No food found' });
             }
 
-            
 
+
+        } catch (error) {
+            res.status(500).json({ status: false, message: error.message });
+        }
+    },
+
+    getAllFoodsByCode: async (req, res) => {
+        const code = req.params.code;
+
+        try {
+            const foodList = await Food.find({ code: code });
+
+            res.status(200).json(foodList);
         } catch (error) {
             res.status(500).json({ status: false, message: error.message });
         }
@@ -129,7 +142,7 @@ module.exports = {
 
             foods = await Food.aggregate([{ $match: { category: category, code: code, isAvailable: true } }, { $sample: { size: 10 } }]);
 
-            if(!foods || foods.length === 0){
+            if (!foods || foods.length === 0) {
                 foods = await Food.aggregate([{ $match: { code: code, isAvailable: true } }, { $sample: { size: 10 } }]);
             } else if (!foods || foods.length === 0) {
                 foods = await Food.aggregate([{ $match: { isAvailable: true } }, { $sample: { size: 10 } }]);
