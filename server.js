@@ -15,8 +15,8 @@ const OrderRoute = require('./routes/order');
 dotenv.config();
 
 mongoose.connect(process.env.MONGOURL)
-.then(() => console.log('Foody Connected to MongoDB'))
-.catch((err) => console.log(err));
+  .then(() => console.log('Foody Connected to MongoDB'))
+  .catch((err) => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,5 +30,7 @@ app.use('/api/address', AddressRoute);
 app.use('/api/cart', CartRoute);
 app.use('/api/orders', OrderRoute);
 
+const PORT = process.env.PORT || 6013;
+const IP_ADDRESS = '192.168.1.6';
 
-app.listen(process.env.PORT || 6013, () => console.log(`Foody Backend is running on ${process.env.PORT}!`));
+app.listen(PORT, IP_ADDRESS, () => console.log(`Foody Backend is running on http://${IP_ADDRESS}:${PORT}!`));

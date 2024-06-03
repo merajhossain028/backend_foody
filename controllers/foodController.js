@@ -51,7 +51,7 @@ module.exports = {
             }
 
             if(randomFoodList.length){
-                res.status(200).json({ status: true, randomFoodList });
+                res.status(200).json(randomFoodList);
 
             } else{
                 res.status(404).json({ status: false, message: 'No food found' });
