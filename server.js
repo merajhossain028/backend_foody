@@ -31,6 +31,6 @@ app.use('/api/cart', CartRoute);
 app.use('/api/orders', OrderRoute);
 
 const PORT = process.env.PORT || 6013;
-const IP_ADDRESS = '192.168.1.6';
+const IP_ADDRESS = '192.168.1.10';
 
 app.listen(PORT, IP_ADDRESS, () => console.log(`Foody Backend is running on http://${IP_ADDRESS}:${PORT}!`));
